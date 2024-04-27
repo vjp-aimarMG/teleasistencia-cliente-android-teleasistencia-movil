@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">Teleasistencia</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Textos menú-->
+    <string name="menu_misDatos">Mis datos</string>
+    <string name="menu_inicio">Inicio</string>
+    <string name="menu_personasContacto">Personas de contacto</string>
+    <string name="menu_acercaDe">Acerca de</string>
+
+    <!-- Textos pantalla inicio-->
+    <string name="tituloInicio">TLA</string>
+    <string name="tituloCompleto">Servicio de teleasistencia móvil</string>
+    <string name="btnAlarma">Botón de alarma</string>
+
+    <!--Textos pantalla login-->
+    <string name="textview_iniciar_sesion">Iniciar sesión</string>
+    <string name="inicioSesion">Iniciar sesión</string>
+    <string name="hintUsuario">Nombre de usuario</string>
+    <string name="hintContrasenia">Contraseña</string>
+    <string name="log">LOGIN</string>
+    <string name="textview_nombre_usuario_obligatorio">El nombre de usuario es obligatorio.</string>
+    <string name="nombreUsuario">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="textview_password_obligatoria">La contraseña es obligatoria.</string>
+
+    <!-- TextViews de condiciones no cumplidas -->
+    <string name="textview_longitud_minima_nombre_usuario">El nombre de usuario debe tener al menos 4 caracteres.</string>
+
+    <!-- Textos pantalla mis datos -->
+    <string name="misDatos">Mis datos</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="dni">DNI</string>
+    <string name="numExpediente">Número expediente</string>
+    <string name="fechaNac">Fecha de nacimiento</string>
+    <string name="genero">Género</string>
+    <string name="telFijo">Teléfono fijo</string>
+    <string name="telMovil">Teléfono móvil</string>
+    <string name="localidad">Localidad</string>
+    <string name="codPostal">Código postal</string>
+    <string name="provincia">Provincia</string>
+    <string name="direccion">Dirección</string>
+
+    <!-- Textos personas de contacto-->
+    <string name="tituloPersonasContacto">Personas de contacto</string>
+
+    <!-- Botones de los fragments insertar y modificar-->
+    <string name="btn_volver">VOLVER</string>
+
+    <!-- Textos tarjeta de personas de contactos-->
+    <string name="tipoRelacion">Tipo relación</string>
+    <string name="telefono">Teléfono</string>
+
+    <!-- acerca de -->
+    <string name="info_acercaDe" translatable="false">"El software ha sido desarrollado bajo la licencia GPL3 por el departamento de Informática del IES “Valle del Jerte” de Plasencia, siendo los analistas del software y coordinadores principales los profesores Fréderic Sánchez, Enrique Pineda y Jesús Redondo.
+        Especial mención al departamento de Servicios Socioculturales y a la Comunidad del IES “San Martín” de Talayuela. Partícipes e impulsores de la plataforma de prácticas de teleasistencia
+
+        Los alumnos que han contribuido en el desarrollo de este proyecto son:"
+    </string>
+
+    <!-- Textos para TextView. -->
+    <string name="descripcion" translatable="false">Descripción</string>
+</resources>

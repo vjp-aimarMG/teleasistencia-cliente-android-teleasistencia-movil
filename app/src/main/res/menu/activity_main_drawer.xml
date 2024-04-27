@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <!-- Item de la barra de navegación -->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inicio"
+            android:title="@string/menu_inicio" />
+        <item
+            android:id="@+id/nav_misDatos"
+            android:title="@string/menu_misDatos" />
+        <item
+            android:id="@+id/nav_personasContacto"
+            android:title="@string/menu_personasContacto" />
+        <item
+            android:id="@+id/nav_acercaDe"
+            android:title="@string/menu_acercaDe" />
+    </group>
+</menu>
