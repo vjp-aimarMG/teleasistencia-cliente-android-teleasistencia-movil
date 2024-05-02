@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.teleasistencia.R
@@ -28,8 +29,6 @@ class InicioFragment : Fragment() {
     private var _binding: FragmentInicioBinding? = null
     private lateinit var btnAlarma: ImageButton
     private lateinit var fecha: TextView
-    private lateinit var tipoAlarmaId: String
-    private lateinit var pacienteId: String
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -97,17 +96,14 @@ class InicioFragment : Fragment() {
             // Hace la petición a la API.
             val response = apiService?.addAlarma(alarma, Constantes.TOKEN_BEARER + "$token")
 
-            // Imprime la respuesta de la API en los registros de depuración.
-            Log.d("API Response", "Response: $response")
-
             // Verifica si la respuesta de la API fue exitosa.
             if (response?.isSuccessful == true) {
                 // Si la respuesta fue exitosa, se muestra una alerta.
                 val alarmaCreada = response.body()
 
-                // Muestra el diálogo de alerta en el hilo principal.
+                // Muestra un mensaje emergente en el hilo principal.
                 withContext(Dispatchers.Main) {
-                    mostrarAlarma(alarmaCreada)
+                    Toast.makeText(context, Constantes.ALARMA_CREADA, Toast.LENGTH_SHORT).show()
                 }
             } else {
                 // Si la respuesta no fue exitosa, muestra una alerta de error.
@@ -116,14 +112,6 @@ class InicioFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun mostrarAlarma(alarmaCreada: Alarma?) {
-        AlertDialog.Builder(context)
-            .setTitle("Alarma creada")
-            .setMessage("$alarmaCreada")
-            .setPositiveButton("OK", null)
-            .show()
     }
 
     private fun mostrarAlerta() {

@@ -88,6 +88,9 @@ class Constantes {
 
         /* Constantes mis datos*/
         const val ID_TIPO_ALARMA = 10
+
+        /* Constantes inicio*/
+        const val ALARMA_CREADA = "Alarma creada correctamente"
     }
 }
 
