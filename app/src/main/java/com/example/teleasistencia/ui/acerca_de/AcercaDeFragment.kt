@@ -55,15 +55,17 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
 
         // Inicializar el adaptador con una lista vacía mientras se carga la lista desde la API REST
         lDesarrolladores = mutableListOf()
+
+
+        // Cargar lista desde la API REST
+        cargarLista()
+
         adapter = com.example.teleasistencia.ui.acerca_de.DesarrolladorAdapter(
             context,
             lDesarrolladores,
             this
         )
         recycler.adapter = adapter
-
-        // Cargar lista desde la API REST
-        cargarLista()
 
         return root
     }
@@ -97,7 +99,7 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
                     ) as List<Convocatoria>
 
                     // Inicializar la lista de desarrolladores
-                    val lDesarrolladores: MutableList<Desarrollador> = mutableListOf()
+                    //    val lDesarrolladores: MutableList<Desarrollador> = mutableListOf()
 
                     // Recorrer las convocatorias y los desarrolladores
                     for (convocatoria in lConvocatorias) {

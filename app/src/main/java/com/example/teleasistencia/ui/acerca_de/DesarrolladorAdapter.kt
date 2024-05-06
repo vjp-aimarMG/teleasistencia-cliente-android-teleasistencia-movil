@@ -41,6 +41,7 @@ class DesarrolladorAdapter(
     override fun onBindViewHolder(holder: DesarrolladorViewHolder, position: Int) {
         val desarrollador = lDesarrolladores[position]
         holder.bind(desarrollador)
+        Log.d("tamaño", "${lDesarrolladores.size}")
 
         val objeto = Utilidad.getObjeto(desarrollador.lDesarrolladorTecnologia, Constantes.AL_DESARROLLADOR_TECNOLOGIA)
         if (objeto != null) {
@@ -55,6 +56,7 @@ class DesarrolladorAdapter(
 
             tecnologiaAdapter = TecnologiaAdapter(context, lTecnologias)
             tecnologiaAdapter.updateTecnologiasList(lTecnologias) // Utilizando updateTecnologiasList
+            Log.d("tecnologia", "$lTecnologias")
         } else {
             Log.d("DesarrolladorAdapter", "objeto es null")
         }
