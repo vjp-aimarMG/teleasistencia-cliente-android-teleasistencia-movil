@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teleasistencia.R
 import com.example.teleasistencia.modelos.DesarrolladorTecnologia
@@ -22,8 +23,6 @@ class DesarrolladorAdapter(
     private var lDesarrolladores: List<Desarrollador>,
     private val listener: OnItemSelectedListener
 ) : RecyclerView.Adapter<DesarrolladorAdapter.DesarrolladorViewHolder>() {
-
-    lateinit var tecnologiaAdapter: TecnologiaAdapter
 
     interface OnItemSelectedListener {
         fun onItemSelected(position: Int)
@@ -41,41 +40,6 @@ class DesarrolladorAdapter(
     override fun onBindViewHolder(holder: DesarrolladorViewHolder, position: Int) {
         val desarrollador = lDesarrolladores[position]
         holder.bind(desarrollador)
-        Log.d("tamaño", "${lDesarrolladores.size}")
-
-        val objeto = Utilidad.getObjeto(desarrollador.lDesarrolladorTecnologia, Constantes.AL_DESARROLLADOR_TECNOLOGIA)
-        if (objeto != null) {
-            val lDesarrolladorTecnologia: MutableList<DesarrolladorTecnologia> = objeto as ArrayList<DesarrolladorTecnologia>
-
-            val lTecnologias = mutableListOf<Tecnologia>()
-
-            for (j in 0 until lDesarrolladorTecnologia.size) {
-                val tecnologiaAux = Utilidad.getObjeto(lDesarrolladorTecnologia[j].id_tecnologia, Constantes.TECNOLOGIA) as Tecnologia
-                lTecnologias.add(tecnologiaAux)
-            }
-
-            tecnologiaAdapter = TecnologiaAdapter(context, lTecnologias)
-            tecnologiaAdapter.updateTecnologiasList(lTecnologias) // Utilizando updateTecnologiasList
-            Log.d("tecnologia", "$lTecnologias")
-        } else {
-            Log.d("DesarrolladorAdapter", "objeto es null")
-        }
-
-        Log.d("DesarrolladorAdapter", "lDesarrolladores size: ${lDesarrolladores.size}")
-        Log.d("DesarrolladorAdapter", "lDesarrolladorTecnologia size: ${desarrollador.lDesarrolladorTecnologia?.size ?: "null"}")
-
-        holder.itemView.setOnClickListener {
-            val fragment = ConsultarDesarrolladorFragment.newInstance(desarrollador)
-
-            val fragmentManager = (context as AppCompatActivity).supportFragmentManager
-            val transaction = fragmentManager.beginTransaction()
-
-            transaction.replace(R.id.fragment_container, fragment)
-
-            transaction.addToBackStack(null)
-
-            transaction.commit()
-        }
     }
 
     fun updateDesarrolladoresList(desarrolladoresList: List<Desarrollador>) {
@@ -86,10 +50,23 @@ class DesarrolladorAdapter(
     inner class DesarrolladorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nombreTextView: TextView = itemView.findViewById(R.id.textViewNombreDesarrolladorCard)
         private val imagenPerfilImageView: ImageView = itemView.findViewById(R.id.imagenPerfilDesarrolladorCard)
+        private val tecnologiaRecyclerView: RecyclerView = itemView.findViewById(R.id.recyclerView_tecnologias)
 
         fun bind(desarrollador: Desarrollador) {
             nombreTextView.text = desarrollador.nombre
             Picasso.get().load(desarrollador.imagen).into(imagenPerfilImageView)
+
+            // Configurar el RecyclerView de tecnologías
+            val lTecnologias = mutableListOf<Tecnologia>()
+            desarrollador.lDesarrolladorTecnologia?.forEach { desarrolladorTecnologia ->
+                val tecnologiaAux = Utilidad.getObjeto(desarrolladorTecnologia.id_tecnologia, Constantes.TECNOLOGIA) as Tecnologia
+                lTecnologias.add(tecnologiaAux)
+            }
+
+            val tecnologiaAdapter = TecnologiaAdapter(context, lTecnologias)
+            tecnologiaRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            tecnologiaRecyclerView.adapter = tecnologiaAdapter
         }
     }
 }
+

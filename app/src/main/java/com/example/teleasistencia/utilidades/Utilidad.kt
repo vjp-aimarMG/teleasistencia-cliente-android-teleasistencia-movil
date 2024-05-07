@@ -12,6 +12,7 @@ import com.example.teleasistencia.modelos.Grupo
 import com.example.teleasistencia.modelos.Paciente
 import com.example.teleasistencia.modelos.Persona
 import com.example.teleasistencia.modelos.Desarrollador
+import com.example.teleasistencia.modelos.DesarrolladorTecnologia
 import com.example.teleasistencia.modelos.PersonaContactoEnAlarma
 import com.example.teleasistencia.modelos.RecursoComunitario
 import com.example.teleasistencia.modelos.RecursoComunitarioEnAlarma
@@ -87,6 +88,8 @@ object Utilidad {
             Constantes.AL_DESARROLLADOR -> type = object : TypeToken<ArrayList<Desarrollador>>() {}.type
             Constantes.DESARROLLADOR -> type = object : TypeToken<Desarrollador>() {}.type
             Constantes.TECNOLOGIA -> type = object : TypeToken<Tecnologia>() {}.type
+            Constantes.AL_DESARROLLADOR_TECNOLOGIA -> type = object : TypeToken<ArrayList<DesarrolladorTecnologia>>() {}.type
+
 
             "Paciente" -> type = object : TypeToken<Paciente>() {}.type
             "RelacionPacientePersonaViewholder" -> type = object : TypeToken<RelacionPacientePersona>() {}.type

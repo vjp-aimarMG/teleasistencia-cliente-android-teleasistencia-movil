@@ -8,7 +8,7 @@ class Constantes {
         /* Nombres de los Modelos */
         const val CENTRO_SANITARIO = "CentroSanitario"
         const val RECURSO_COMUNITARIO = "RecursoComunitario"
-        const val AL_DESARROLLADOR_TECNOLOGIA = "ArrayList<Desarrollador_tecnologia>"
+        const val AL_DESARROLLADOR_TECNOLOGIA = "ArrayList<DesarrolladorTecnologia>"
         const val TECNOLOGIA = "Tecnologia"
         const val DESARROLLADOR = "Desarrollador"
         const val AL_DESARROLLADOR = "ArrayList<Desarrollador>"

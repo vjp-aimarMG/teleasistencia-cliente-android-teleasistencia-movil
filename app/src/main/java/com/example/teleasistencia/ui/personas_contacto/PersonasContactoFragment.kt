@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.teleasistencia.R
 import com.example.teleasistencia.databinding.FragmentPersonasContactoBinding
 import com.example.teleasistencia.modelos.Direccion
 import com.example.teleasistencia.modelos.Paciente
@@ -405,6 +407,10 @@ class PersonasContactoFragment : Fragment() {
 
         val recyclerView = binding.tarjetaDeContactos
         recyclerView.layoutManager = LinearLayoutManager(context)
+
+        //Barra del menú personalizada
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.menu_toolbar)
 
         // Use the sampleRelaciones list instead of making the API call
         recyclerView.adapter = AdaptadorPersonasContacto(sampleRelaciones)
