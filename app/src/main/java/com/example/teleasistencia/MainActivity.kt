@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.teleasistencia.databinding.ActivityMainBinding
+import com.example.teleasistencia.ui.acerca_de.ConsultarDesarrolladorFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -56,11 +57,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            // Si hay fragmentos en la pila de retroceso, regresa al anterior
-            supportFragmentManager.popBackStack()
+        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        if (fragment is ConsultarDesarrolladorFragment) {
+            supportFragmentManager.beginTransaction()
+                .remove(fragment)
+                .commit()
+        } else if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStackImmediate()
         } else {
-            // Si no hay fragmentos en la pila de retroceso, realiza el comportamiento predeterminado
             super.onBackPressed()
         }
     }

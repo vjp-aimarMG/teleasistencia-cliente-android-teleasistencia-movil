@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso
 
 class DesarrolladorAdapter(
     private val context: Context,
-    private var lDesarrolladores: List<Desarrollador>,
+    var lDesarrolladores: List<Desarrollador>,
     private val listener: OnItemSelectedListener
 ) : RecyclerView.Adapter<DesarrolladorAdapter.DesarrolladorViewHolder>() {
 
@@ -40,6 +40,10 @@ class DesarrolladorAdapter(
     override fun onBindViewHolder(holder: DesarrolladorViewHolder, position: Int) {
         val desarrollador = lDesarrolladores[position]
         holder.bind(desarrollador)
+
+        holder.itemView.setOnClickListener {
+            listener.onItemSelected(position)
+        }
     }
 
     fun updateDesarrolladoresList(desarrolladoresList: List<Desarrollador>) {
@@ -69,4 +73,3 @@ class DesarrolladorAdapter(
         }
     }
 }
-

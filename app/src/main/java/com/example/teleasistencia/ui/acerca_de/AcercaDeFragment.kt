@@ -56,10 +56,6 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
         // Inicializar el adaptador con una lista vacía mientras se carga la lista desde la API REST
         lDesarrolladores = mutableListOf()
 
-
-        // Cargar lista desde la API REST
-        cargarLista()
-
         adapter = com.example.teleasistencia.ui.acerca_de.DesarrolladorAdapter(
             context,
             lDesarrolladores,
@@ -67,8 +63,12 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
         )
         recycler.adapter = adapter
 
+        // Cargar lista desde la API REST
+        cargarLista()
+
         return root
     }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -138,9 +138,20 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
         }
     }
 
+    private fun openConsultarDesarrolladorFragment(developer: Desarrollador) {
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        val consultarDesarrolladorFragment = ConsultarDesarrolladorFragment.newInstance(developer)
+        transaction.replace(R.id.fragment_container, consultarDesarrolladorFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
     // Método para manejar la selección de un elemento en el RecyclerView
     override fun onItemSelected(position: Int) {
         selectedPosition = position
+        // Get the developer object from the adapter
+        val developer = adapter.lDesarrolladores[position]
+        // Open the ConsultarDesarrolladorFragment
+        openConsultarDesarrolladorFragment(developer)
     }
 }
-
