@@ -1,6 +1,7 @@
 package com.example.teleasistencia.utilidades
 
 import android.util.Log
+import android.widget.Toast
 import com.example.teleasistencia.modelos.Alarma
 import com.example.teleasistencia.modelos.CentroSanitario
 import com.example.teleasistencia.modelos.CentroSanitarioEnAlarma
@@ -61,7 +62,6 @@ object Utilidad {
      * @return
      */
     fun getObjeto(lTM: Any?, tipo: String): Any? {
-        Log.d("obj", "getObjeto llamado  tipo = $tipo")
         val gson = Gson()
         var type: Type? = null
         var objeto: Any? = null
@@ -113,18 +113,13 @@ object Utilidad {
             if (lTM != null && type != null) {
                 val json = gson.toJson(lTM)
                 objeto = gson.fromJson(json, type)
-            } else {
-                Log.e("obj", "Error: lTM es nulo o type es nulo")
             }
         } catch (e: Exception) {
-            Log.e("obj", "Error al convertir objeto", e)
+            e.stackTrace
         }
 
-        Log.d("obj", "getObjeto devuelve $objeto")
         return objeto
     }
-
-
 
     /**
      * Getters y Setters

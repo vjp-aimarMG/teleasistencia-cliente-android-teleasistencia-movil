@@ -2,7 +2,6 @@ package com.example.teleasistencia
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -111,7 +110,6 @@ class LoginActivity : AppCompatActivity() {
 
                     // Realizamos la siguiente petición
                     peticionUsuarioLogueado()
-                    Log.d("Login", "Token: $token")
                 } else {
                     // Si la respuesta no fue exitosa, mostramos un diálogo de error o información
                     withContext(Dispatchers.Main) {

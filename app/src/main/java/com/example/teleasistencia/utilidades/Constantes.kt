@@ -27,6 +27,8 @@ class Constantes {
          */
         const val ERROR = "Error"
         const val ERROR_ALERTDIALOG = "Ha ocurrido un error. Código de error: "
+        const val ERROR_CONVERTIR_DESARROLLADOR = "Error al convertir objeto desarrollador"
+        const val ERROR_DESARROLLADOR_NULO = "No se ha podido cargar desarrolladores"
         const val ERROR_AL_CONECTARSE_AL_SERVIDOR =
             "Ha ocurrido un error al conectarse al servidor, intentelo más tarde."
 

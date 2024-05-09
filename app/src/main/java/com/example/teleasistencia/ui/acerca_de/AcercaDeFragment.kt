@@ -2,7 +2,6 @@ package com.example.teleasistencia.ui.acerca_de
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -109,10 +108,10 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
                                 if (desarrolladorAux != null) {
                                     lDesarrolladores.add(desarrolladorAux)
                                 } else {
-                                    Log.e("obj", "Error al convertir objeto desarrollador")
+                                    Toast.makeText(context, Constantes.ERROR_CONVERTIR_DESARROLLADOR, Toast.LENGTH_LONG).show()
                                 }
                             } else {
-                                Log.e("obj", "desarrolladorObject es nulo")
+                                Toast.makeText(context, Constantes.ERROR_DESARROLLADOR_NULO, Toast.LENGTH_LONG).show()
                             }
                         }
                     }
