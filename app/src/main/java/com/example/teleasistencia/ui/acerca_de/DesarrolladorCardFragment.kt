@@ -13,10 +13,10 @@ import com.example.teleasistencia.modelos.Tecnologia
 class DesarrolladorCardFragment : Fragment() {
 
     // Declaración de variables
-    private var lTecnologias: List<Tecnologia> = ArrayList()
-    private lateinit var recycler: RecyclerView
-    private lateinit var adapter: TecnologiaAdapter
-    private lateinit var lManager: RecyclerView.LayoutManager
+    private var lTecnologias: List<Tecnologia> = ArrayList() // Lista de tecnologías a mostrar
+    private lateinit var recycler: RecyclerView // RecyclerView para mostrar las tecnologías
+    private lateinit var adapter: TecnologiaAdapter // Adaptador para el RecyclerView
+    private lateinit var lManager: RecyclerView.LayoutManager // Administrador de diseño para el RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,10 +43,10 @@ class DesarrolladorCardFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(
-            adapter: TecnologiaAdapter,
-            recyclerView: RecyclerView,
-            layoutManager: RecyclerView.LayoutManager,
-            lTecnologias: List<Tecnologia>
+            adapter: TecnologiaAdapter, // Adaptador de tecnología
+            recyclerView: RecyclerView, // RecyclerView de tecnologías
+            layoutManager: RecyclerView.LayoutManager, // Administrador de diseño para el RecyclerView
+            lTecnologias: List<Tecnologia> // Lista de tecnologías a mostrar
         ) = DesarrolladorCardFragment().apply {
             // Pasar los parámetros necesarios al fragmento
             this.adapter = adapter
@@ -56,4 +56,3 @@ class DesarrolladorCardFragment : Fragment() {
         }
     }
 }
-

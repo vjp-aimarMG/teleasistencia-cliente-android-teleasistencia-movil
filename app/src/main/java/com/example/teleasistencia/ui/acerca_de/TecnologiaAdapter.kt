@@ -30,7 +30,6 @@ class TecnologiaAdapter(private val context: Context, private var lTecnologias: 
     override fun onBindViewHolder(viewHolder: TecnologiaViewHolder, position: Int) {
         val tecnologia = lTecnologias[position]
         viewHolder.bind(tecnologia)
-
     }
 
     // Método para actualizar la lista de tecnologías
@@ -51,4 +50,3 @@ class TecnologiaAdapter(private val context: Context, private var lTecnologias: 
         }
     }
 }
-

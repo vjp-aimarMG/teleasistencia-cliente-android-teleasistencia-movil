@@ -12,9 +12,9 @@ import com.example.teleasistencia.utilidades.Constantes
 
 class ConsultarDesarrolladorFragment : Fragment() {
     // Declaración de variables
-    private var desarrollador: Desarrollador? = null
-    private lateinit var textViewNombreDesarrollador: TextView
-    private lateinit var textViewDescripcionDesarrollador: TextView
+    private var desarrollador: Desarrollador? = null // Objeto Desarrollador que se mostrará
+    private lateinit var textViewNombreDesarrollador: TextView // TextView para mostrar el nombre del desarrollador
+    private lateinit var textViewDescripcionDesarrollador: TextView // TextView para mostrar la descripción del desarrollador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,4 +63,3 @@ class ConsultarDesarrolladorFragment : Fragment() {
             }
     }
 }
-

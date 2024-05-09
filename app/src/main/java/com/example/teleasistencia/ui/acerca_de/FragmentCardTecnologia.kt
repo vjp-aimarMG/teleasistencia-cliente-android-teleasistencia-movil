@@ -10,8 +10,8 @@ import com.example.teleasistencia.R
 class FragmentCardTecnologia : Fragment() {
 
     // Variables para almacenar los parámetros
-    private var mParam1: String? = null
-    private var mParam2: String? = null
+    private var mParam1: String? = null // Primer parámetro
+    private var mParam2: String? = null // Segundo parámetro
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,4 +46,5 @@ class FragmentCardTecnologia : Fragment() {
             }
     }
 }
+
 

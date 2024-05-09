@@ -26,13 +26,13 @@ import kotlinx.coroutines.withContext
 class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener {
 
     // Declaración de variables
-    private lateinit var listaTecnologias: List<Tecnologia>
-    private lateinit var lDesarrolladores: MutableList<Desarrollador>
-    private lateinit var recycler: RecyclerView
-    private lateinit var adapter: DesarrolladorAdapter
-    private lateinit var lManager: RecyclerView.LayoutManager
-    private lateinit var context: Context
-    private var selectedPosition = RecyclerView.NO_POSITION
+    private lateinit var listaTecnologias: List<Tecnologia> // Lista de tecnologías
+    private lateinit var lDesarrolladores: MutableList<Desarrollador> // Lista mutable de desarrolladores
+    private lateinit var recycler: RecyclerView // RecyclerView para mostrar desarrolladores
+    private lateinit var adapter: DesarrolladorAdapter // Adaptador para el RecyclerView
+    private lateinit var lManager: RecyclerView.LayoutManager // Administrador de diseño para el RecyclerView
+    private lateinit var context: Context // Contexto de la aplicación
+    private var selectedPosition = RecyclerView.NO_POSITION // Posición seleccionada en el RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +69,6 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
         return root
     }
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.context = context
@@ -97,9 +96,6 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
                         lObjetos,
                         Constantes.AL_CONVOCATORIA
                     ) as List<Convocatoria>
-
-                    // Inicializar la lista de desarrolladores
-                    //    val lDesarrolladores: MutableList<Desarrollador> = mutableListOf()
 
                     // Recorrer las convocatorias y los desarrolladores
                     for (convocatoria in lConvocatorias) {
@@ -138,6 +134,7 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
         }
     }
 
+    // Método para abrir el fragmento ConsultarDesarrolladorFragment
     private fun openConsultarDesarrolladorFragment(developer: Desarrollador) {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         val consultarDesarrolladorFragment = ConsultarDesarrolladorFragment.newInstance(developer)
@@ -149,9 +146,9 @@ class AcercaDeFragment : Fragment(), DesarrolladorAdapter.OnItemSelectedListener
     // Método para manejar la selección de un elemento en el RecyclerView
     override fun onItemSelected(position: Int) {
         selectedPosition = position
-        // Get the developer object from the adapter
+        // Obtener el objeto desarrollador del adaptador
         val developer = adapter.lDesarrolladores[position]
-        // Open the ConsultarDesarrolladorFragment
+        // Abrir el fragmento ConsultarDesarrolladorFragment
         openConsultarDesarrolladorFragment(developer)
     }
 }
