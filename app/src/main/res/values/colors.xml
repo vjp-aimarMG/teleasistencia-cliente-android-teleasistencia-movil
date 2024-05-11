@@ -10,4 +10,5 @@
     <color name="gris">#2675597D</color>
     <color name="letras">#75597D</color>
     <color name="tarjeta">#EBE6EC</color>
+    <color name="shimmer">#DDDDDD</color>
 </resources>

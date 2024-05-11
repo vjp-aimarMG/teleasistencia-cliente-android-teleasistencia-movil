@@ -1,6 +1,8 @@
 package com.example.teleasistencia.ui.acerca_de
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,32 +18,59 @@ import com.example.teleasistencia.utilidades.Utilidad
 import com.squareup.picasso.Picasso
 
 class DesarrolladorAdapter(
-    private val context: Context, // Contexto de la aplicación
-    var lDesarrolladores: List<Desarrollador>, // Lista de desarrolladores a mostrar
-    private val listener: OnItemSelectedListener // Interfaz para manejar la selección de elementos
-) : RecyclerView.Adapter<DesarrolladorAdapter.DesarrolladorViewHolder>() {
+    private val context: Context,
+    var lDesarrolladores: List<Desarrollador>, // Lista de desarrolladores
+    private val listener: OnItemSelectedListener // Listener para manejar la selección de elementos
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var isShimmerShowing = true // Bandera para determinar si se muestra el efecto Shimmer
+    private val shimmerItemCount = 5 // Número de elementos Shimmer a mostrar
+
+    // Interfaz para manejar eventos de selección de elementos
     interface OnItemSelectedListener {
-        fun onItemSelected(position: Int) // Método llamado cuando se selecciona un elemento
+        fun onItemSelected(position: Int)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DesarrolladorViewHolder {
-        // Inflar el layout de la tarjeta del desarrollador
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.fragment_desarrollador_card, parent, false)
-        return DesarrolladorViewHolder(v)
+    // Método llamado cuando se crea un nuevo ViewHolder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == 0) {
+            val v = LayoutInflater.from(parent.context).inflate(R.layout.fragment_item_shimmer, parent, false)
+            ShimmerViewHolder(v) // ViewHolder para el efecto Shimmer
+        } else {
+            val v = LayoutInflater.from(parent.context).inflate(R.layout.fragment_desarrollador_card, parent, false)
+            DesarrolladorViewHolder(v) // ViewHolder para los elementos de desarrollador
+        }
     }
 
+    // Método para determinar el tipo de vista de un elemento en una posición determinada
+    override fun getItemViewType(position: Int): Int {
+        return if (isShimmerShowing && position < shimmerItemCount) 0 else 1
+    }
+
+    // Método para obtener el número total de elementos en el adaptador
     override fun getItemCount(): Int {
-        return lDesarrolladores.size
+        return if (isShimmerShowing) shimmerItemCount else lDesarrolladores.size
     }
 
-    override fun onBindViewHolder(holder: DesarrolladorViewHolder, position: Int) {
-        val desarrollador = lDesarrolladores[position]
-        holder.bind(desarrollador)
+    // Método llamado para vincular datos a una vista
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is ShimmerViewHolder) {
+            if (position == 0) {
+                // Retraso para simular la carga de datos y luego detener el efecto Shimmer
+                Handler(Looper.getMainLooper()).postDelayed({
+                    isShimmerShowing = false
+                    notifyDataSetChanged()
+                }, 5000)
+            }
+        } else if (holder is DesarrolladorViewHolder) {
+            // Vincular datos del desarrollador a la vista
+            val desarrollador = lDesarrolladores[position]
+            holder.bind(desarrollador)
 
-        // Configurar el evento de clic en la tarjeta del desarrollador
-        holder.itemView.setOnClickListener {
-            listener.onItemSelected(position)
+            // Configurar el listener para la selección de elementos
+            holder.itemView.setOnClickListener {
+                listener.onItemSelected(position)
+            }
         }
     }
 
@@ -51,6 +80,7 @@ class DesarrolladorAdapter(
         notifyDataSetChanged()
     }
 
+    // ViewHolder para los elementos de desarrollador
     inner class DesarrolladorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nombreTextView: TextView = itemView.findViewById(R.id.textViewNombreDesarrolladorCard) // TextView para mostrar el nombre del desarrollador
         private val imagenPerfilImageView: ImageView = itemView.findViewById(R.id.imagenPerfilDesarrolladorCard) // ImageView para mostrar la imagen de perfil del desarrollador
@@ -72,5 +102,10 @@ class DesarrolladorAdapter(
             tecnologiaRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             tecnologiaRecyclerView.adapter = tecnologiaAdapter
         }
+    }
+
+    // ViewHolder para el efecto Shimmer
+    inner class ShimmerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        // Se puede agregar cualquier lógica adicional necesaria para el shimmer aquí
     }
 }

@@ -3,12 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:id="@+id/fragment_desarrollador_card"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="4dp"
+    android:id="@+id/shimmer_layout"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
     tools:context=".ui.acerca_de.DesarrolladorAdapter">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container_principal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,6 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
+            android:background="@color/shimmer"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline14"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,15 +34,18 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_tecnologias"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbars="horizontal"
+            android:layout_width="190dp"
+            android:layout_height="57dp"
+            android:background="@color/shimmer"
             android:orientation="horizontal"
+            android:scrollbars="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.257"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toTopOf="@+id/guideline15" />
+            app:layout_constraintTop_toTopOf="@+id/guideline15"
+            app:layout_constraintVertical_bias="0.09" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline14"
@@ -60,14 +70,13 @@
 
         <TextView
             android:id="@+id/textViewNombreDesarrolladorCard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
+            android:layout_width="55dp"
+            android:layout_height="22dp"
+            android:background="@color/shimmer"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toStartOf="@+id/guideline13"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -79,10 +88,9 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
+    <include layout="@layout/fragment_desarrollador_card"
+        android:id="@+id/contenido_layout"
+        android:visibility="gone" />
 </androidx.cardview.widget.CardView>
-
-
-
-
-

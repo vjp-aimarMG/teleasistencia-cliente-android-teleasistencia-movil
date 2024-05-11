@@ -59,11 +59,14 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10") //GSON
 
 
-// Librerías necesarias para las recyclerviews y las cardviews
+    // Librerías necesarias para las recyclerviews y las cardviews
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.cardview:cardview:1.0.0")
 
-// Librerías para cargar imágenes de una URL
+    // Librerías para cargar imágenes de una URL
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // Librería para Shimmer Effect
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 }
