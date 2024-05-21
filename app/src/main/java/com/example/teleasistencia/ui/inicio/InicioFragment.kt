@@ -49,11 +49,11 @@ class InicioFragment : Fragment() {
 
         // Busca el TextView en el layout usando su ID.
         fecha = root.findViewById(R.id.textViewFecha)
-
         // Encuentra el botón en el layout
         btnAlarma = root.findViewById<ImageButton>(R.id.btnAlarma)
 
         fechaActual()
+
         btnAlarma.setOnClickListener{
             nuevaAlarma()
         }
@@ -63,7 +63,7 @@ class InicioFragment : Fragment() {
 
 
     //Indica la fecha actual
-    private fun fechaActual() {
+    fun fechaActual(){
         // Crea una nueva instancia de Date que representa la fecha y hora actuales.
         val hoy = Date()
 
@@ -76,7 +76,6 @@ class InicioFragment : Fragment() {
         // Capitaliza la primera letra del día de la semana.
         fechaHoy = fechaHoy.capitalize(Locale("es", "ES"))
 
-        // Establece el texto del TextView a la fecha formateada y capitalizada.
         fecha.setText(fechaHoy)
     }
 

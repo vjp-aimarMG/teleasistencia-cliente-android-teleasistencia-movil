@@ -114,7 +114,7 @@
         android:layout_width="178dp"
         android:layout_height="56dp"
         android:gravity="right"
-        android:shadowColor="#000000"
+        android:shadowColor="@color/black"
         android:shadowDx="0"
         android:shadowDy="4"
         android:shadowRadius="4"

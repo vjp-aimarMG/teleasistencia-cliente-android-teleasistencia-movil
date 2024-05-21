@@ -1,7 +1,9 @@
 package com.example.teleasistencia
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -12,11 +14,15 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.teleasistencia.databinding.ActivityMainBinding
 import com.example.teleasistencia.ui.acerca_de.ConsultarDesarrolladorFragment
 import com.google.android.material.navigation.NavigationView
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var fechaDos: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

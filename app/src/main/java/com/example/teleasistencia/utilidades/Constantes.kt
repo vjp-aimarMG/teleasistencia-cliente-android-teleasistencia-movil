@@ -78,6 +78,8 @@ class Constantes {
         const val ERROR_DATOS_PERSONAS = "No se pudo obtener los datos de la persona. Por favor, verifica los detalles proporcionados y vuelve a intentarlo."
         const val ERROR_ID_PERSONAS = "No se pudo obtener los datos del usuario. Por favor, verifica tu conexión a Internet y vuelve a intentarlo."
         const val ERROR_PERSONAS_CONTACTO = "No se pudo obtener los datos de las personas de contacto."
+        const val ERROR_API_SIN_DATOS = "La respuesta de la API no contiene datos"
+        const val ERROR_API = "Error al hacer la petición a la API"
 
         /* Constantes de argumentos para pasar datos a los Fragments */
         const val ARG_DESARROLLADOR = "Desarrollador"
