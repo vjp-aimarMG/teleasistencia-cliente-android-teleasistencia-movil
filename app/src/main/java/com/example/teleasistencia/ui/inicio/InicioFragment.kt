@@ -2,6 +2,8 @@ package com.example.teleasistencia.ui.inicio
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -52,9 +54,12 @@ class InicioFragment : Fragment() {
         // Encuentra el botón en el layout
         btnAlarma = root.findViewById<ImageButton>(R.id.btnAlarma)
 
-        fechaActual()
+        // Obtener la fecha actual en el formato especificado
+        val fechaActual = obtenerFechaActual()
 
-        btnAlarma.setOnClickListener{
+        // Mostrar la fecha en un TextView
+        fecha.text = fechaActual
+        btnAlarma.setOnClickListener {
             nuevaAlarma()
         }
 
@@ -63,20 +68,18 @@ class InicioFragment : Fragment() {
 
 
     //Indica la fecha actual
-    fun fechaActual(){
-        // Crea una nueva instancia de Date que representa la fecha y hora actuales.
-        val hoy = Date()
+    fun obtenerFechaActual(): String {
+        // Definir el formato de la fecha
+        val formatoFecha = SimpleDateFormat("EEEE, d MMMM yyyy", Locale("es", "ES"))
 
-        // Crea una nueva instancia de SimpleDateFormat para formatear la fecha en el estilo deseado.
-        val formato = SimpleDateFormat("EEEE, d MMMM yyyy", Locale("es", "ES"))
+        // Obtener la fecha actual
+        val fechaActual = Date()
 
-        // Usa el objeto SimpleDateFormat para formatear la fecha actual.
-        var fechaHoy = formato.format(hoy)
+        // Formatear la fecha actual
+        val fechaFormateada = formatoFecha.format(fechaActual)
 
-        // Capitaliza la primera letra del día de la semana.
-        fechaHoy = fechaHoy.capitalize(Locale("es", "ES"))
-
-        fecha.setText(fechaHoy)
+        // Capitalizar la primera letra del nombre del día de la semana
+        return fechaFormateada.replaceFirstChar { it.uppercase() }
     }
 
     //Crea una nueva alarma
@@ -120,7 +123,7 @@ class InicioFragment : Fragment() {
             .setPositiveButton("OK", null)
             .show()
     }
-    
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.teleasistencia.R
 import com.example.teleasistencia.databinding.FragmentMisDatosBinding
@@ -44,6 +45,10 @@ class MisDatosFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        //Barra del menú personalizada
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.menu_toolbar)
 
         _binding = FragmentMisDatosBinding.inflate(inflater, container, false)
         val root: View = binding.root

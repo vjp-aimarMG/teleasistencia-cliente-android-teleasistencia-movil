@@ -21,10 +21,13 @@ import kotlinx.coroutines.launch
 
 class PersonasContactoFragment : Fragment() {
 
+    // Binding para acceder a los elementos de la vista del fragmento
     private var _binding: FragmentPersonasContactoBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // Variable que representa al paciente (puede ser nulo)
+    private var paciente: Paciente? = null
+
+    // Este binding solo es válido entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -33,30 +36,49 @@ class PersonasContactoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        //Barra del menú personalizada
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.menu_toolbar)
+
+        // Inflar la vista del fragmento y obtener su raíz
         _binding = FragmentPersonasContactoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        // Configurar el RecyclerView
         val recyclerView = binding.tarjetaDeContactos
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+        // Obtener el servicio de la API
         val apiService = ClienteRetrofit.getInstance().apiService
 
+        // Iniciar un nuevo ciclo de vida con Kotlin Coroutines
         lifecycleScope.launch {
             try {
-                val numeroExpediente = "0002" // Replace this with the desired expediente number
-                val response = apiService.obtenerRelaciones(numeroExpediente)
+                // Obtener el número de expediente del paciente si está disponible
+                val numeroExpediente = paciente?.numeroExpediente
 
-                if (response.isSuccessful) {
-                    val relaciones = response.body()
-                    if (relaciones != null) {
-                        recyclerView.adapter = AdaptadorPersonasContacto(relaciones)
+                // Realizar la llamada a la API para obtener las relaciones del paciente
+                val response = numeroExpediente?.let { apiService.obtenerRelaciones(it) }
+
+                // Procesar la respuesta de la API
+                if (response != null) {
+                    if (response.isSuccessful) {
+                        // Obtener las relaciones del cuerpo de la respuesta
+                        val relaciones = response.body()
+                        if (relaciones != null) {
+                            // Establecer el adaptador del RecyclerView con las relaciones obtenidas
+                            recyclerView.adapter = AdaptadorPersonasContacto(relaciones)
+                        } else {
+                            // Mostrar un mensaje de error si no hay datos de relaciones disponibles
+                            showAlertApiSinDatos()
+                        }
                     } else {
-                        showAlertApiSinDatos()
+                        // Mostrar un mensaje de error si la llamada a la API no fue exitosa
+                        showAlertErrorApi()
                     }
-                } else {
-                    showAlertErrorApi()
                 }
             } catch (e: Exception) {
+                // Mostrar un diálogo de error en caso de excepción
                 AlertDialog.Builder(context)
                     .setTitle("Error")
                     .setMessage(Constantes.ERROR_ID_PERSONAS)
@@ -68,6 +90,7 @@ class PersonasContactoFragment : Fragment() {
         return root
     }
 
+    // Método para mostrar un diálogo de error cuando no hay datos disponibles
     private fun showAlertApiSinDatos() {
         AlertDialog.Builder(context)
             .setTitle("Error")
@@ -76,6 +99,7 @@ class PersonasContactoFragment : Fragment() {
             .show()
     }
 
+    // Método para mostrar un diálogo de error cuando hay un error en la llamada a la API
     private fun showAlertErrorApi() {
         AlertDialog.Builder(context)
             .setTitle("Error")
@@ -84,6 +108,7 @@ class PersonasContactoFragment : Fragment() {
             .show()
     }
 
+    // Limpiar el binding al destruir la vista del fragmento para evitar memory leaks
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
