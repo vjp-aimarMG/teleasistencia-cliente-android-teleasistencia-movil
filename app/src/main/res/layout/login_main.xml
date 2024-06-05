@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="#FFFFFF"
-    tools:context=".ui.log.login">
+    tools:context=".ui.log.Login">
 
     <TextView
         android:id="@+id/textView_iniciarSesion"
@@ -56,6 +56,7 @@
                 android:autofillHints=""
                 android:drawableEnd="@mipmap/ic_person"
                 android:ems="10"
+                android:textColor="@color/black"
                 android:hint="@string/nombreUsuario"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
@@ -88,6 +89,7 @@
                 android:drawableEnd="@mipmap/ic_key"
                 android:ems="10"
                 android:hint="@string/password"
+                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:minHeight="48dp"

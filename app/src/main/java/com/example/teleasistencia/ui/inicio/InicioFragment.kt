@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import com.example.teleasistencia.R
 import com.example.teleasistencia.databinding.FragmentInicioBinding
 import com.example.teleasistencia.modelos.Alarma
+import com.example.teleasistencia.modelos.Paciente
 import com.example.teleasistencia.servicios.ClienteRetrofit
 import com.example.teleasistencia.utilidades.Constantes
 import com.example.teleasistencia.utilidades.Utilidad
@@ -31,6 +32,7 @@ class InicioFragment : Fragment() {
     private var _binding: FragmentInicioBinding? = null
     private lateinit var btnAlarma: ImageButton
     private lateinit var fecha: TextView
+    private lateinit var idPacienteUcr: Paciente
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -85,7 +87,7 @@ class InicioFragment : Fragment() {
     //Crea una nueva alarma
     private fun nuevaAlarma() {
         // Se crea el objeto Alarma.
-        val alarma = Alarma(Constantes.ID_TIPO_ALARMA, idPacienteUcr = 1)
+        val alarma = Alarma(Constantes.ID_TIPO_ALARMA, idPacienteUcr.id)
 
         // Luego, se lanza una coroutine para hacer la petición a la API.
         CoroutineScope(Dispatchers.IO).launch {

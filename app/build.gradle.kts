@@ -69,4 +69,7 @@ dependencies {
 
     // Librería para Shimmer Effect
     implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    //Librería para protocolo HTTPS
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
 }

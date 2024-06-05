@@ -1,6 +1,12 @@
 package com.example.teleasistencia.utilidades;
 
 class Constantes {
+/* Se utiliza:
+     * "http://localhost:8000/" con dispositivos físicos
+     * con el emulador se ha de utilizar "http://10.0.2.2:8000/"
+     * En pre-producción: http://api-rest-teleasistencia-p1.iesvjp.es/
+     * En producción (1): http://api-rest-teleasistencia.iesvjp.es/
+ */
     companion object {
         /* Direcciones */
         const val DIRECCION_WEBSOCKET = "ws://10.0.2.2:8000/ws/socket-server/"
@@ -90,11 +96,9 @@ class Constantes {
         /* Constantes comunes */
         const val BEARER_ESPACIO = "Bearer "
 
-        /* Constantes mis datos*/
-        const val ID_TIPO_ALARMA = 10
-
         /* Constantes inicio*/
         const val ALARMA_CREADA = "Alarma creada correctamente"
+        const val ID_TIPO_ALARMA = 10
     }
 }
 

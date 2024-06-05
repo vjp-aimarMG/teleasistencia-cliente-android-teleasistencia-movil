@@ -1,5 +1,6 @@
 package com.example.teleasistencia
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -124,7 +125,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun peticionUsuarioLogueado() {
         // Corremos esta función dentro de un bloque de una coroutine

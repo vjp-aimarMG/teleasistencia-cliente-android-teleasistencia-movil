@@ -10,7 +10,8 @@ class ClienteRetrofit {
     private fun getRetrofitInstance(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constantes.API_BASE_URL) // Establece la URL base de la API
-            .addConverterFactory(GsonConverterFactory.create()) // Agrega un convertidor de JSON a objetos usando Gson
+            // Agrega un convertidor de JSON a objetos usando Gson
+            .addConverterFactory(GsonConverterFactory.create()) // PASAR POR PARÁMETRO "MoshiConverterFactory" PARA UTILIZAR PROTOCOLO HTTPS
             .build()
     }
 
